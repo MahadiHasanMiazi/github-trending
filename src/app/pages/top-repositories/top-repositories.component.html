@@ -1,4 +1,4 @@
-<div>
+<div class="body-div">
   <br><br>
   <b>Total Repository: </b> {{topRepository.length}}
   <div>
@@ -17,10 +17,5 @@
       </tbody>
     </table>
     <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-<!--    <ol>-->
-<!--      <li *ngFor="let item of topRepository">-->
-<!--        <a [routerLink]="['/top-repository-details', item.id]">{{item.name}}</a>-->
-<!--      </li>-->
-<!--    </ol>-->
   </div>
 </div>

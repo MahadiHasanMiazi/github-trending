@@ -33,3 +33,8 @@ select option {border: 1px solid #000; background: #010;}
   color: white;
   text-align: center;
 }
+.body-div{
+  margin-left: 10px;
+  width: 100%;
+  margin-top: 2%;
+}

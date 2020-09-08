@@ -1,12 +1,14 @@
-<div class="body">
-  <label for="countries">Select   Country</label>
-  <select name="countries" id="countries" (change)="selectCountry($event)">
-    <option value="bangladesh" selected>Bangladesh</option>
-    <option value="india">India</option>
-    <option value="pakistan">Pakistan</option>
-    <option value="usa">USA</option>
-  </select>
-  <br><br>
+<div class="body-div">
+  <div>
+    <label for="countries">Select   Country</label>
+    <select name="countries" id="countries" (change)="selectCountry($event)">
+      <option value="bangladesh" selected>Bangladesh</option>
+      <option value="india">India</option>
+      <option value="pakistan">Pakistan</option>
+      <option value="usa">USA</option>
+    </select>
+  </div>
+  <br>
   <h4>Top User: {{topRepository.length}}</h4>
   <div>
     <table class="user-table">
