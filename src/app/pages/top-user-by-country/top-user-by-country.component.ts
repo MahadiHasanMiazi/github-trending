@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../service/api-service.service';
+import {UserModel} from '../../model/userModel';
 
 @Component({
   selector: 'app-top-user-by-country',
@@ -8,15 +9,16 @@ import {ApiService} from '../../service/api-service.service';
 })
 export class TopUserByCountryComponent implements OnInit {
 
-  public topRepository: any = '';
+  topUserList: UserModel[];
   country: string = '';
   config:any;
 
   constructor(private apiService: ApiService) {
+    this.topUserList = new Array<UserModel>()
     this.config = {
       itemsPerPage: 5,
       currentPage: 1,
-      totalUser: this.topRepository.length,
+      totalUser: this.topUserList.length,
     };
 
   }
@@ -24,12 +26,14 @@ export class TopUserByCountryComponent implements OnInit {
     this.topUser('bangladesh');
   }
   topUser(country) {
+    localStorage.setItem('country', country);
     this.apiService.topUserByCountry(country)
       .subscribe(
         result => {
-          this.topRepository = result['items'];
-          console.log(this.topRepository);
-          localStorage.setItem('topUserModel', JSON.stringify(this.topRepository));
+          this.topUserList = result['items'];
+          console.log(this.topUserList);
+          this.apiService.userListModel = this.topUserList;
+          // localStorage.setItem('topUserModel', JSON.stringify(this.topUserList));
         },
         error => console.log(error)
       );

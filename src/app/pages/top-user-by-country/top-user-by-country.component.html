@@ -9,7 +9,7 @@
     </select>
   </div>
   <br>
-  <h4>Top User: {{topRepository.length}}</h4>
+  <h4>Top User: {{topUserList.length}}</h4>
   <div>
     <table class="user-table">
       <thead>
@@ -19,7 +19,7 @@
       </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of topRepository | paginate: config">
+        <tr *ngFor="let item of topUserList | paginate: config">
           <td><a [routerLink]="['/top-user-details', item.id]">{{item.id}}</a></td>
           <td><a [routerLink]="['/top-user-details', item.id]">{{item.login}}</a></td>
         </tr>

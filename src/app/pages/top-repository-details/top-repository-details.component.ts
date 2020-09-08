@@ -22,7 +22,21 @@ export class TopRepositoryDetailsComponent implements OnInit {
     });
   }
   getRepositoryDetails(repoId){
-    this.repositoryModel = JSON.parse(localStorage.getItem('topRepoModel')).find(f => f.id == repoId);
+    if(this.apiService.repositoryListModel == undefined){
+      this.apiService.topRepositories()
+        .subscribe(
+          result => {
+            this.repositoryModelList = result['items'];
+            this.apiService.repositoryListModel = this.repositoryModelList;
+            this.repositoryModel = this.apiService.repositoryListModel.find(f=>f.id == repoId);
+            // localStorage.setItem('topRepoModel', JSON.stringify(this.topRepository));
+          },
+          error => console.log(error)
+        );
+    }else{
+      this.repositoryModel = this.apiService.repositoryListModel.find(f => f.id == repoId);
+      // this.repositoryModel = JSON.parse(localStorage.getItem('topRepoModel')).find(f => f.id == repoId);
+    }
   }
 
 

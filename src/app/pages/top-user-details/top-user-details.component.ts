@@ -26,7 +26,21 @@ export class TopUserDetailsComponent implements OnInit {
   }
 
   getTopUserDetails(userId){
-    this.userModel = JSON.parse(localStorage.getItem('topUserModel')).find(f => f.id == userId);
+    if(this.apiService.userListModel == undefined) {
+      this.apiService.topUserByCountry(localStorage.getItem('country'))
+        .subscribe(
+          result => {
+            this.userListModel = result['items'];
+            this.apiService.userListModel = this.userListModel;
+            this.userModel = this.apiService.userListModel.find(f => f.id == userId);
+            // localStorage.setItem('topUserModel', JSON.stringify(this.topUserList));
+          },
+          error => console.log(error)
+        );
+    }else {
+      this.userModel = this.apiService.userListModel.find(f => f.id == userId);
+      // this.userModel = JSON.parse(localStorage.getItem('topUserModel')).find(f => f.id == userId);
+    }
   }
 
 }

@@ -8,11 +8,12 @@ import {RepositoryModel} from '../../model/repositoryModel';
   styleUrls: ['./top-repositories.component.css']
 })
 export class TopRepositoriesComponent implements OnInit {
-  public topRepository: any = '';
+  topRepository: RepositoryModel[];
   country: string = '';
   config:any;
 
   constructor(private apiService: ApiService) {
+    this.topRepository = new Array<RepositoryModel>()
     this.config = {
       itemsPerPage: 5,
       currentPage: 1,
@@ -27,7 +28,8 @@ export class TopRepositoriesComponent implements OnInit {
       .subscribe(
         result => {
           this.topRepository = result['items'];
-          localStorage.setItem('topRepoModel', JSON.stringify(this.topRepository));
+          this.apiService.repositoryListModel = this.topRepository;
+          // localStorage.setItem('topRepoModel', JSON.stringify(this.topRepository));
         },
         error => console.log(error)
       );
