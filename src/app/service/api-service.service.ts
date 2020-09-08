@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {RepositoryModel} from '../model/repositoryModel';
+import {UserModel} from '../model/userModel';
 
 
 
@@ -9,6 +10,7 @@ import {RepositoryModel} from '../model/repositoryModel';
 })
 export class ApiService {
   repositoryListModel: RepositoryModel[];
+  userListModel: UserModel[];
 
   repositoryId: number;
 

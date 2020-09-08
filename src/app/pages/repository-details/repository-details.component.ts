@@ -33,9 +33,23 @@ export class RepositoryDetailsComponent implements OnInit {
   }
 
   getRepositoryDetails(repoId){
+
+    if(this.apiService.repositoryListModel == undefined){
+      this.apiService.searchRepository(localStorage.getItem('country'))
+        .subscribe(
+          result => {
+            this.repositoryModelList = result['items'];
+            this.apiService.repositoryListModel = this.repositoryModelList;
+            this.repositoryModel = this.apiService.repositoryListModel.find(f => f.id == repoId);
+          },
+          error => console.log(error)
+        );
+    }else {
+      this.repositoryModel = this.apiService.repositoryListModel.find(f => f.id == repoId);
+    }
     // this.repositoryModelList = this.apiService.repositoryListModel;
     // this.repositoryModel = this.apiService.repositoryListModel.find(f => f.id == repoId)
-    this.repositoryModel = JSON.parse(localStorage.getItem('repoModel')).find(f => f.id == repoId);
+    // this.repositoryModel = JSON.parse(localStorage.getItem('repoModel')).find(f => f.id == repoId);
   }
 
 }

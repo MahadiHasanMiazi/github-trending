@@ -27,18 +27,20 @@ export class HomeComponent implements OnInit {
       currentPage: 1,
       totalItems: this.userListModel.length
     };
+    console.log('user list', this.apiService.userListModel);
 
 
   }
   ngOnInit(): void {
   }
   searchByUser() {
+    localStorage.setItem('country', this.inputKey);
     this.apiService.searchUser(this.inputKey)
       .subscribe(
         result => {
           this.userListModel = result['items'];
-          // this.apiService.repositoryListModel = this.userListModel;
-          localStorage.setItem('userModel', JSON.stringify(this.userListModel));
+          this.apiService.userListModel = this.userListModel;
+          // localStorage.setItem('userModel', JSON.stringify(this.userListModel));
         },
         error => console.log(error)
       );
@@ -46,8 +48,8 @@ export class HomeComponent implements OnInit {
       .subscribe(
         result => {
           this.repositoryListModel = result['items'];
-          console.log(this.repositoryListModel);
-          localStorage.setItem('repoModel', JSON.stringify(this.repositoryListModel));
+          this.apiService.repositoryListModel = this.repositoryListModel;
+          // localStorage.setItem('repoModel', JSON.stringify(this.repositoryListModel));
         },
         error => console.log(error)
       );

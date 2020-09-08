@@ -16,25 +16,29 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) {
     this.userModel = new UserModel();
-    this.userListModel = new Array<UserModel>()
-    console.log('reached details');
+    this.userListModel = new Array<UserModel>();
   }
 
   ngOnInit(): void {
-    console.log('init model',this.apiService.repositoryListModel);
     this.route.params.subscribe(params => {
-      console.log(params);
-      console.log('url id',+params['userId']);
       this.getRepositoryDetails(+params['userId']);
     });
-    // this.getRepositoryDetails(this.repositoryId);
-
   }
 
   getRepositoryDetails(repoId){
-    // this.userListModel = this.apiService.repositoryListModel;
-    // this.repositoryModel = this.apiService.repositoryListModel.find(f => f.id == repoId)
-    this.userModel = JSON.parse(localStorage.getItem('userModel')).find(f => f.id == repoId);
+    if(this.apiService.userListModel == undefined){
+      this.apiService.searchUser(localStorage.getItem('country'))
+        .subscribe(
+          result => {
+            this.userListModel = result['items'];
+            this.apiService.userListModel = this.userListModel;
+            this.userModel = this.apiService.userListModel.find(f => f.id == repoId)
+          },
+          error => console.log(error)
+        );
+    } else {
+      this.userModel = this.apiService.userListModel.find(f => f.id == repoId)
+    }
   }
 
 
