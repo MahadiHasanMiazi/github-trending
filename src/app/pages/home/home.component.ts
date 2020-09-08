@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
   searchByUser() {
-    localStorage.setItem('country', this.inputKey);
+    localStorage.setItem('user-repo', this.inputKey);
     this.apiService.searchUser(this.inputKey)
       .subscribe(
         result => {

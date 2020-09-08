@@ -27,7 +27,7 @@ export class UserDetailsComponent implements OnInit {
 
   getRepositoryDetails(repoId){
     if(this.apiService.userListModel == undefined){
-      this.apiService.searchUser(localStorage.getItem('country'))
+      this.apiService.searchUser(localStorage.getItem('user-repo'))
         .subscribe(
           result => {
             this.userListModel = result['items'];
