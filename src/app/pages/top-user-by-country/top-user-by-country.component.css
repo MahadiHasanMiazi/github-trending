@@ -1,0 +1,35 @@
+select  {
+  outline: 0;
+  overflow: hidden;
+  height: 30px;
+  background: lightslategray;
+  color: white;
+  border: #2c343c;
+  padding: 5px 3px 5px 10px;
+
+
+}
+
+select option {border: 1px solid #000; background: #010;}
+.body{
+  margin-top: 10px;
+  margin-left: 2%;
+}
+
+.user-table{
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 30%;
+}
+.user-table td, user-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.user-table th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #808080;
+  color: white;
+  text-align: center;
+}

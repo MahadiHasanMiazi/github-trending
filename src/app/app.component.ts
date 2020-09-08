@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ApiService} from './service/api-service.service';
+import {RepositoryModel} from './model/repositoryModel';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'github-trending';
+
+
+  constructor() {}
+
+  myFunction(){
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
+
 }

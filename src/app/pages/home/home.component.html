@@ -1,0 +1,58 @@
+
+<div>
+  <form (ngSubmit)="searchByUser()">
+    <input [(ngModel)]="inputKey" [ngModelOptions]="{standalone: true}" type="text">
+    <button type="submit" class="search-btn">Search</button>
+  </form>
+
+  <div class="repo-user">
+    <div>
+      <div class="tab">
+        <button style="background-color: {{tabColorUser}}" (click)="selectTab('user')">User</button>
+        <button style="background-color: {{tabColorRepo}}" (click)="selectTab('repo')">Repository</button>
+      </div>
+    </div>
+    <br/><br/>
+  <div *ngIf="(tabValue === 'user' || tabValue == '')">
+    <h2 >User</h2>
+    <span>Total User: {{userListModel.length}}</span>
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th >Id</th>
+          <th >Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of userListModel | paginate: config">
+          <td><a [routerLink]="['/user-details', item.id]">{{item.id}}</a></td>
+          <td><a [routerLink]="['/user-details', item.id]">{{item.login}}</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+
+  </div>
+  <div *ngIf="(tabValue === 'repo')">
+    <h2>Repository</h2>
+    <span>Total Repository: {{repositoryListModel.length}}</span>
+    <table class="user-table">
+      <thead>
+      <tr>
+        <th >Id</th>
+        <th >Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of repositoryListModel | paginate: config">
+        <td><a [routerLink]="['/repository-details', item.id]">{{item.name}}</a></td>
+        <td><a [routerLink]="['/repository-details', item.id]">{{item.name}}</a></td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+<!--    <span>Total Count: {{}}</span>-->
+  </div>
+  </div>
+</div>
