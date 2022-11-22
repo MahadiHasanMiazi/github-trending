@@ -30,6 +30,7 @@ export class UserDetailsComponent implements OnInit {
       this.apiService.searchUser(localStorage.getItem('user-repo'))
         .subscribe(
           result => {
+            console.log('hello')
             this.userListModel = result['items'];
             this.apiService.userListModel = this.userListModel;
             this.userModel = this.apiService.userListModel.find(f => f.id == repoId)
