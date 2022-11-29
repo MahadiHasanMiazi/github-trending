@@ -38,6 +38,8 @@ export class RepositoryDetailsComponent implements OnInit {
       this.apiService.searchRepository(localStorage.getItem('user-repo'))
         .subscribe(
           result => {
+            console.log('result', result);
+            
             this.repositoryModelList = result['items'];
             this.apiService.repositoryListModel = this.repositoryModelList;
             this.repositoryModel = this.apiService.repositoryListModel.find(f => f.id == repoId);
